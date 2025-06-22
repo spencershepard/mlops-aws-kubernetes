@@ -1,5 +1,5 @@
 ## DevOps/MLOps Template for AWS
-This repository is a template and demo for DevOps/MLOps on AWS using GitHub Actions and Terraform. It includes workflows for CI/CD, infrastructure provisioning, and deployment of applications to Kubernetes clusters.
+This repository is a template and demo for DevOps/MLOps on AWS using GitHub Actions and Terraform. It includes workflows for CI/CD, infrastructure provisioning, and deployment of applications to Kubernetes clusters.  Additionally the infrastructure includes a Prometheus and Grafana stack for monitoring.
 
 ### Provisioning AWS Resources with Terraform
 Initiate the [terraform.yaml](.github/workflows/terraform.yaml) GitHub actions workflow to provision AWS resources using Terraform. This workflow can be triggered manually from the GitHub website. This workflow will:
@@ -36,17 +36,23 @@ flowchart TD
 - `AWS_SECRET_ACCESS_KEY`: AWS secret access key.
 - `KUBECONFIG`: Base64 encoded kubeconfig file for accessing the EKS cluster.
 
-Generate kubeconfig using the following command once the EKS cluster is created:
-```bash
-aws eks update-kubeconfig --name <EKS_CLUSTER_NAME> --region <AWS_REGION> --profile <AWS_PROFILE>
-```
-
-Then encode it to base64:
-```
 
 ### Required GitHub Variables
 - `AWS_REGION`: The AWS region where resources will be created (e.g., `us-east-1`).
 - `EKS_CLUSTER_NAME`: The name of the EKS cluster to be created.
 
 
+
+### Local Access
+Generate kubeconfig using the following command once the EKS cluster is created:
+```bash
+aws eks update-kubeconfig --name <EKS_CLUSTER_NAME> --region <AWS_REGION> --profile <AWS_PROFILE>
+```
+
+```bash
+kubectl get nodes
+```
+### IAM
+
 AWS IAM permissions for Terraform backend described here:  https://developer.hashicorp.com/terraform/language/backend/s3
+
