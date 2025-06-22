@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: fastapi
-        image: ghcr.io/spencershepard/mlops:latest
+        image: ghcr.io/spencershepard/mlops-aws-kubernetes:main
         ports:
         - containerPort: 80
