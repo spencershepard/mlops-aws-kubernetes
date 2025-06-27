@@ -1,3 +1,6 @@
 terraform {
-  backend "s3" {}
+  backend "s3" {
+    key            = "eks/terraform.tfstate"
+    encrypt        = true
+  }
 }
